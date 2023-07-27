@@ -6,7 +6,9 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { UserCreateDto } from './dto/user.dto';
 import { UserService } from './user.service';
@@ -16,6 +18,7 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @UseGuards(AuthGuard)
   @Get('list')
   async getUserList() {
     return this.userService.getAllUsers();

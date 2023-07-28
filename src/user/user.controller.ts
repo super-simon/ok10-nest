@@ -18,7 +18,7 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard())
   @Get('list')
   async getUserList() {
     return this.userService.getAllUsers();
